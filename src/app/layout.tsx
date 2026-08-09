@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { StructuredData } from "@/components/shared/structured-data";
@@ -108,6 +109,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${display.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-9T6D7ZCZVN"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-9T6D7ZCZVN');
+          `}
+        </Script>
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
